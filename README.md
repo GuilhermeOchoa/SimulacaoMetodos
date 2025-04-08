@@ -42,3 +42,15 @@ Trabalhos da disciplina de simulação e métodos
 1. **Compilar**:
    ```bash
    javac Evento.java Escalonador.java Fila.java GeradorAleatorio.java SimuladorFilaTandem.java
+2. **Executar**:
+   ```bash
+   java SimuladorFilaTandem
+   
+## ⚙️ Funcionamento do Evento de Passagem
+
+```mermaid
+graph TD
+    A[Cliente atendido na Fila 1] --> B{Espaço na Fila 2?}
+    B -->|Sim| C[Adiciona à Fila 2]
+    B -->|Não| D[Contabiliza perda]
+    C --> E[Agenda saída da Fila 2]
