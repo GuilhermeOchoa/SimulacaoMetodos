@@ -1,0 +1,79 @@
+# Configuração para simulação da rede de filas em YAML
+# Mesma topologia do exemplo em Properties
+
+# Configurações básicas
+tempoInicial: 2.0
+filaInicial: 1
+
+# Definição das filas
+filas:
+  - id: 1
+    capacidade: 1000
+    servidores: 1
+    minChegada: 2.0
+    maxChegada: 4.0
+    minAtendimento: 1.0
+    maxAtendimento: 2.0
+    descricao: "Fila de entrada (G/G/1)"
+    
+  - id: 2
+    capacidade: 5
+    servidores: 2
+    minChegada: 0.0
+    maxChegada: 0.0
+    minAtendimento: 4.0
+    maxAtendimento: 8.0
+    descricao: "Fila intermediária 1 (G/G/2/5)"
+    
+  - id: 3
+    capacidade: 10
+    servidores: 2
+    minChegada: 0.0
+    maxChegada: 0.0
+    minAtendimento: 5.0
+    maxAtendimento: 15.0
+    descricao: "Fila intermediária 2 (G/G/2/10)"
+
+# Definição das rotas
+rotas:
+  - origem: 1
+    destino: 2
+    probabilidade: 0.8
+    descricao: "Fila 1 -> Fila 2 (80%)"
+    
+  - origem: 1
+    destino: 3
+    probabilidade: 0.2
+    descricao: "Fila 1 -> Fila 3 (20%)"
+    
+  - origem: 2
+    destino: 0
+    probabilidade: 0.2
+    descricao: "Fila 2 -> Saída (20%)"
+    
+  - origem: 2
+    destino: 1
+    probabilidade: 0.3
+    descricao: "Fila 2 -> Fila 1 (30%)"
+    
+  - origem: 2
+    destino: 3
+    probabilidade: 0.5
+    descricao: "Fila 2 -> Fila 3 (50%)"
+    
+  - origem: 3
+    destino: 0
+    probabilidade: 0.3
+    descricao: "Fila 3 -> Saída (30%)"
+    
+  - origem: 3
+    destino: 1
+    probabilidade: 0.7
+    descricao: "Fila 3 -> Fila 1 (70%)"
+
+# Configurações adicionais (opcionais)
+configuracoes:
+  debug: false
+  limiteAleatorios: 100000
+  seed: 42
+  nomeSimulacao: "Rede de Filas Exemplo"

@@ -30,7 +30,11 @@ public class Evento implements Comparable<Evento> {
     
     @Override
     public String toString() {
-        return String.format("Evento[%.2f, %s, serv:%d, %d→%d]", 
-               tempo, tipo, servidor, filaOrigem, filaDestino);
+        String origem = filaOrigem == 0 ? "Ext" : String.valueOf(filaOrigem);
+        String destino = filaDestino == -1 ? "-" : 
+                        (filaDestino == 0 ? "Ext" : String.valueOf(filaDestino));
+        
+        return String.format("Evento[%.2f, %s, %s→%s]", 
+               tempo, tipo, origem, destino);
     }
 }
